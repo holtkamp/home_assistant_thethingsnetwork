@@ -564,7 +564,7 @@ class TtnDataEntity(Entity):
 
     async def async_set_state(self, value):
         self._state = value
-        await self.async_update_ha_state()
+        await self.async_update_ha_state(True)
 
     def __refresh_names(self):
         device_name = self.__device_id
@@ -591,7 +591,7 @@ class TtnDataEntity(Entity):
     async def refresh_options(self):
         self.__refresh_names()
 
-        await self.async_update_ha_state()
+        await self.async_update_ha_state(True)
 
         device_registry = await dr.async_get_registry(self.__client.hass)
         device_registry.async_get_or_create(
